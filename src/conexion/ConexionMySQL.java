@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Conexion;
+package conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

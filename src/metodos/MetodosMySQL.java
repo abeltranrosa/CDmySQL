@@ -23,24 +23,21 @@ import java.sql.Statement;
  */
 public class MetodosMySQL {
     
-   // ConexionMySQL mysql = new ConexionMySQL();
-  //java.sql.Connection con = Conectar();
-        //ConexionMySQL cc=new ConexionMySQL();
-   //Connection con=mysql.Conectar();
    
    
-   public String bd="mmoureperez";
+   
+   /* public String bd="mmoureperez";
     public String url="jdbc:mysql://10.0.0.254/"+bd;
     public String user="mmoureperez";
-    public String pass="mmoureperez";
+    public String pass="mmoureperez";*/
     Connection con=null;
     Statement cmd = null;
     
-   public void Conectar(){
+   public void Conectar(String url, String user, String pass){
        
         try{
             Class.forName("org.gjt.mm.mysql.Driver");
-            con= (Connection) DriverManager.getConnection(this.url,this.user,this.pass);
+            con= (Connection) DriverManager.getConnection(url,user,pass);
         }catch(Exception ex){
             System.out.println("error "+ex.getLocalizedMessage());        
         }

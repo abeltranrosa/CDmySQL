@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
+
 
 
 /**
@@ -22,30 +22,26 @@ import javax.swing.JOptionPane;
 public class MetodosMySQL {
     
     ConexionMySQL mysql = new ConexionMySQL();
-    java.sql.Connection cn = mysql.Conectar();
+  java.sql.Connection cn = mysql.Conectar();
     
     //ConexionMySQL cc=new ConexionMySQL();
-    Connection con=mysql.Conectar();
+   Connection con=mysql.Conectar();
     
    
     
-    public void insertar(String nomTabla, int columnas,String datos, String valores){
+    public void insertar(String nomTabla,String datos, String valores){
         try {
-            PreparedStatement st= con.prepareStatement("INSERT INTO "+nomTabla+" ( "+datos+" ) VALUES( "+valores+" )");
-       /*st.setInt(1,Integer.parseInt(tId.getText()));
-       st.setString(2,tTitulo.getText());
-       st.setString(3,tDirector.getText());
-       st.setString(4,tGenero.getText());
-       st.setString(5,tAño.getText());
-       st.executeUpdate();*/
+            PreparedStatement st= con.prepareStatement("INSERT INTO "+nomTabla+" ("+datos+") VALUES("+valores+")");
+       
+       st.executeUpdate();
        
         } catch (SQLException ex) {
             System.out.println("Error al insertar "+ex.getMessage());
         }
     }
-    public void actualizar(String nomTabla, int columnas, String ID,String datosMostrar,String datosActualizar){
+    public void actualizar(String nomTabla, String ID,String datosActualizar){
         try {
-            PreparedStatement st= con.prepareStatement("UPDATE mi4j SET "+datosActualizar+" WHERE ID='"+ID+"'");
+            PreparedStatement st= con.prepareStatement("UPDATE "+ nomTabla+" SET "+datosActualizar+" WHERE ID='"+ID+"'");
             st.executeUpdate();
             
         } catch (SQLException ex) {
@@ -67,12 +63,12 @@ public class MetodosMySQL {
        
         try {
             Statement st= con.createStatement();
-               ResultSet rs= st.executeQuery("SELECT "+datosMostrar+" FROM"+nomTabla);
+               ResultSet rs= st.executeQuery("SELECT "+datosMostrar+" FROM "+nomTabla);
               String [] datos= new String[columnas];
         while(rs.next()){
           
             for (int i = 0; i < datos.length; i++) {
-                datos[i]=rs.getString(i);
+                datos[i]=rs.getString(i+1);
             }
           }
             System.out.println(datos);

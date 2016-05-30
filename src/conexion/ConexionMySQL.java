@@ -9,6 +9,7 @@ package conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -16,6 +17,7 @@ import java.sql.Statement;
  * @author mmoureperez
  */
 public class ConexionMySQL {
+    
     public String bd="mmoureperez";
     public String url="jdbc:mysql://10.0.0.254/"+bd;
     public String user="mmoureperez";
@@ -30,7 +32,7 @@ public class ConexionMySQL {
             Class.forName("org.gjt.mm.mysql.Driver");
             link= (Connection) DriverManager.getConnection(this.url,this.user,this.pass);
         }catch(Exception ex){
-            System.out.println("Error al conectar "+ex.getMessage());
+            System.out.println("error "+ex.getLocalizedMessage());// JOptionPane.showMessageDialog(null,ex.getMessage());
         
         }
         return link;

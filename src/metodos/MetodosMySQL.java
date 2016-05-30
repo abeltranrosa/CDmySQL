@@ -39,18 +39,18 @@ public class MetodosMySQL {
             System.out.println("Error al insertar "+ex.getMessage());
         }
     }
-    public void actualizar(String nomTabla, String ID,String datosActualizar){
+    public void actualizar(String nomTabla, String ID,String datosActualizar,String datosNuevos){
         try {
-            PreparedStatement st= con.prepareStatement("UPDATE "+ nomTabla+" SET "+datosActualizar+" WHERE ID='"+ID+"'");
+            PreparedStatement st= con.prepareStatement("UPDATE "+ nomTabla+" SET "+datosActualizar+"='"+datosNuevos+"' WHERE ID='"+ID+"'");
             st.executeUpdate();
             
         } catch (SQLException ex) {
             System.out.println("Error al actualizar "+ex.getMessage() );
         }
     }
-    public void borrar(String nomTabla, String ID,int columnas,String datosMostrar){
+    public void borrar(String nomTabla, int ID){
          try {
-            PreparedStatement st=con.prepareStatement("DELETE FROM " +nomTabla+" WHERE ID='"+ID+"'");
+            PreparedStatement st=con.prepareStatement("DELETE FROM " +nomTabla+" WHERE ID="+ID);
        st.executeUpdate();
        
         
@@ -60,7 +60,7 @@ public class MetodosMySQL {
     }
     
     public void consultaDatos(String nomTabla,int columnas, String datosMostrar){
-       
+       String ac="";
         try {
             Statement st= con.createStatement();
                ResultSet rs= st.executeQuery("SELECT "+datosMostrar+" FROM "+nomTabla);
@@ -69,10 +69,12 @@ public class MetodosMySQL {
           
             for (int i = 0; i < datos.length; i++) {
                 datos[i]=rs.getString(i+1);
+                 ac= ac +" "+datos[i];
+                
             }
-          }
-            System.out.println(datos);
-        
+            System.out.println(ac);
+              }
+                   
         } catch (SQLException ex) {
             System.out.println("Error en la visualizacion "+ex.getMessage());
         }

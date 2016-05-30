@@ -6,12 +6,14 @@
 
 package metodos;
 
-import conexion.ConexionMySQL;
+
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 
 
 
@@ -21,17 +23,34 @@ import java.sql.Statement;
  */
 public class MetodosMySQL {
     
-    ConexionMySQL mysql = new ConexionMySQL();
-  java.sql.Connection cn = mysql.Conectar();
+   // ConexionMySQL mysql = new ConexionMySQL();
+  //java.sql.Connection con = Conectar();
+        //ConexionMySQL cc=new ConexionMySQL();
+   //Connection con=mysql.Conectar();
+   
+   
+   public String bd="mmoureperez";
+    public String url="jdbc:mysql://10.0.0.254/"+bd;
+    public String user="mmoureperez";
+    public String pass="mmoureperez";
+    Connection con=null;
+    Statement cmd = null;
     
-    //ConexionMySQL cc=new ConexionMySQL();
-   Connection con=mysql.Conectar();
-    
+   public void Conectar(){
+       
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            con= (Connection) DriverManager.getConnection(this.url,this.user,this.pass);
+        }catch(Exception ex){
+            System.out.println("error "+ex.getLocalizedMessage());        
+        }
+        //return link;
+    }
    
     
-    public void insertar(String nomTabla,String datos, String valores){
+    public void insertar(String nomTabla,String nomColum, String valores){
         try {
-            PreparedStatement st= con.prepareStatement("INSERT INTO "+nomTabla+" ("+datos+") VALUES("+valores+")");
+            PreparedStatement st= con.prepareStatement("INSERT INTO "+nomTabla+" ("+nomColum+") VALUES("+valores+")");
        
        st.executeUpdate();
        
@@ -77,6 +96,14 @@ public class MetodosMySQL {
                    
         } catch (SQLException ex) {
             System.out.println("Error en la visualizacion "+ex.getMessage());
+        }
+    }
+    public void desconectar(){
+        try {
+            con.close();
+            //cn.close();
+        } catch (SQLException ex) {
+            System.out.println("error "+ex.getMessage());
         }
     }
 }

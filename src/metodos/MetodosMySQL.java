@@ -24,15 +24,14 @@ import java.sql.Statement;
 public class MetodosMySQL {
     
    
-   
-   
-   /* public String bd="mmoureperez";
-    public String url="jdbc:mysql://10.0.0.254/"+bd;
-    public String user="mmoureperez";
-    public String pass="mmoureperez";*/
     Connection con=null;
     Statement cmd = null;
-    
+    /**
+     * 
+     * @param url url de la base de datos
+     * @param user usuario
+     * @param pass contraseña
+     */
    public void Conectar(String url, String user, String pass){
        
         try{
@@ -41,10 +40,15 @@ public class MetodosMySQL {
         }catch(Exception ex){
             System.out.println("error "+ex.getLocalizedMessage());        
         }
-        //return link;
+      
     }
    
-    
+    /**
+     * 
+     * @param nomTabla nombre de la tabla donde queremos insertar
+     * @param nomColum nombre de los campos de la tabla separado por comas
+     * @param valores valores para insertar separado por comas
+     */
     public void insertar(String nomTabla,String nomColum, String valores){
         try {
             PreparedStatement st= con.prepareStatement("INSERT INTO "+nomTabla+" ("+nomColum+") VALUES("+valores+")");
@@ -55,6 +59,13 @@ public class MetodosMySQL {
             System.out.println("Error al insertar "+ex.getMessage());
         }
     }
+    /**
+     * 
+     * @param nomTabla nombre de la tabla para actualizar
+     * @param ID identificador de la fila
+     * @param datosActualizar nombre del campo a actualizar
+     * @param datosNuevos  datos nuevos que queremos meter en el campo seleccionado
+     */
     public void actualizar(String nomTabla, String ID,String datosActualizar,String datosNuevos){
         try {
             PreparedStatement st= con.prepareStatement("UPDATE "+ nomTabla+" SET "+datosActualizar+"='"+datosNuevos+"' WHERE ID='"+ID+"'");
@@ -64,6 +75,11 @@ public class MetodosMySQL {
             System.out.println("Error al actualizar "+ex.getMessage() );
         }
     }
+    /**
+     * 
+     * @param nomTabla nombre de la tabla de la cual queremos borrar alguna fila
+     * @param ID identificador del la fila o filas que queremos borrar
+     */
     public void borrar(String nomTabla, int ID){
          try {
             PreparedStatement st=con.prepareStatement("DELETE FROM " +nomTabla+" WHERE ID="+ID);
@@ -74,7 +90,12 @@ public class MetodosMySQL {
             System.out.println("Error al borrar "+ex.getMessage());
         }
     }
-    
+    /**
+     * 
+     * @param nomTabla nombre de la tabla que queremos mostrar
+     * @param columnas numero de columnas que tiene la tabla
+     * @param datosMostrar nobre de los campos que queremos mostrar
+     */
     public void consultaDatos(String nomTabla,int columnas, String datosMostrar){
        String ac="";
         try {
@@ -95,6 +116,9 @@ public class MetodosMySQL {
             System.out.println("Error en la visualizacion "+ex.getMessage());
         }
     }
+    /**
+     * Metodo para desconectar de la base de datos
+     */
     public void desconectar(){
         try {
             con.close();

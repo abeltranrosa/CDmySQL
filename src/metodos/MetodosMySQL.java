@@ -96,12 +96,12 @@ public class MetodosMySQL {
      * @param columnas numero de columnas que tiene la tabla
      * @param datosMostrar nobre de los campos que queremos mostrar
      */
-    public void consultaDatos(String nomTabla,int columnas, String datosMostrar){
+    public String consultaDatos(String nomTabla,int columnas, String datosMostrar){
        String ac="";
         try {
             Statement st= con.createStatement();
                ResultSet rs= st.executeQuery("SELECT "+datosMostrar+" FROM "+nomTabla);
-              String [] datos= new String[columnas];
+              String [] datos= new String[columnas-1];
         while(rs.next()){
           
             for (int i = 0; i < datos.length; i++) {
@@ -109,12 +109,13 @@ public class MetodosMySQL {
                  ac= ac +" "+datos[i];
                 
             }
-            System.out.println(ac);
+           // System.out.println(ac);
               }
                    
         } catch (SQLException ex) {
             System.out.println("Error en la visualizacion "+ex.getMessage());
         }
+        return ac;
     }
     /**
      * Metodo para desconectar de la base de datos

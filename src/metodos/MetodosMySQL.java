@@ -27,7 +27,7 @@ public class MetodosMySQL {
     Connection con=null;
     Statement cmd = null;
     /**
-     * 
+     * Metodo para conectar con la BD
      * @param url url de la base de datos
      * @param user usuario
      * @param pass contraseña
@@ -44,7 +44,7 @@ public class MetodosMySQL {
     }
    
     /**
-     * 
+     * Metodo para insertar filas en la tabla de la BD
      * @param nomTabla nombre de la tabla donde queremos insertar
      * @param nomColum nombre de los campos de la tabla separado por comas
      * @param valores valores para insertar separado por comas
@@ -60,7 +60,7 @@ public class MetodosMySQL {
         }
     }
     /**
-     * 
+     * Metodo para actualizar algun cambio en las tablas de la BD
      * @param nomTabla nombre de la tabla para actualizar
      * @param ID identificador de la fila
      * @param datosActualizar nombre del campo a actualizar
@@ -76,7 +76,7 @@ public class MetodosMySQL {
         }
     }
     /**
-     * 
+     * Metodo para borrar alguna fila de la tabla
      * @param nomTabla nombre de la tabla de la cual queremos borrar alguna fila
      * @param ID identificador del la fila o filas que queremos borrar
      */
@@ -91,7 +91,7 @@ public class MetodosMySQL {
         }
     }
     /**
-     * 
+     * Metodo para consultar datos de la tabla
      * @param nomTabla nombre de la tabla que queremos mostrar
      * @param columnas numero de columnas que tiene la tabla
      * @param datosMostrar nobre de los campos que queremos mostrar
@@ -109,7 +109,7 @@ public class MetodosMySQL {
                  ac= ac +" "+datos[i];
                 
             }
-           // System.out.println(ac);
+            System.out.println(ac);
               }
                    
         } catch (SQLException ex) {

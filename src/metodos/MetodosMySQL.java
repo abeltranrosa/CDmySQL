@@ -94,7 +94,7 @@ public class MetodosMySQL {
      * Metodo para consultar datos de la tabla
      * @param nomTabla nombre de la tabla que queremos mostrar
      * @param columnas numero de columnas que tiene la tabla
-     * @param datosMostrar nobre de los campos que queremos mostrar
+     * @param datosMostrar nombre de los campos que queremos mostrar
      */
     public String consultaDatos(String nomTabla,int columnas, String datosMostrar){
        String ac="";
@@ -109,13 +109,13 @@ public class MetodosMySQL {
                  ac= ac +" "+datos[i];
                 
             }
-            System.out.println(ac);
-              }
+                        }
                    
         } catch (SQLException ex) {
             System.out.println("Error en la visualizacion "+ex.getMessage());
         }
         return ac;
+        
     }
     /**
      * Metodo para desconectar de la base de datos
@@ -123,7 +123,7 @@ public class MetodosMySQL {
     public void desconectar(){
         try {
             con.close();
-            //cn.close();
+            
         } catch (SQLException ex) {
             System.out.println("error "+ex.getMessage());
         }

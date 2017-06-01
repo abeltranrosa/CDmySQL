@@ -15,12 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-
-
-/**
- *
- * @author mmoureperez
- */
 public class MetodosMySQL {
     
    

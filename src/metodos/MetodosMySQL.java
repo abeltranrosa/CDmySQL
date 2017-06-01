@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package metodos;
+package metodos; 
 
 
 import java.sql.Connection;

@@ -12,6 +12,10 @@ import java.sql.Statement;
 
 
 public class MetodosMySQL {
+
+    public MetodosMySQL() {
+    }
+    
     
    
     Connection con=null;
